@@ -4,9 +4,9 @@ var app = express();
 // Rutas
 app.get('/', (req, res, next) =>  {
 
-    res.status(200).json({
+    res.json({
         ok: true,
-        mensaje: 'petición realizada correctamente'
+        mensaje: 'petición realizada correctamente 2'
     })
 
 });
