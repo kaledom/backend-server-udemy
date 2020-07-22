@@ -5,7 +5,7 @@ var app = express();
 app.get('/', (req, res, next) =>  {
 
     res.json({
-        ok: true,
+        ok: true, 
         mensaje: 'petición realizada correctamente 2'
     })
 

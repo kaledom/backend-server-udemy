@@ -13,6 +13,9 @@ const app = express();
 // configurar CORS
 app.use( cors() );
 
+// Lectura y parseo del body
+app.use( express.json() );
+
 // Base de datos
 dbConnection();
 
@@ -23,8 +26,8 @@ app.use(bodyParser.json())
 
 // Importar rutas
 var appRoutes = require('./routes/app');
-var usuarioRoutes = require('./routes/usuario');
-var loginRoutes = require('./routes/login');
+var loginRoutes = require('./routes/auth');
+var usuarioRoutes = require('./routes/usuarios');
 var hospitalRoutes = require('./routes/hospital');
 
 // Conexión a la base de datos
@@ -32,8 +35,8 @@ var hospitalRoutes = require('./routes/hospital');
 // pass: DarkAlone6144
 
 // Rutas
-app.use('/usuario', usuarioRoutes);
-app.use('/login', loginRoutes);
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
 app.use('/hospital', hospitalRoutes);
 app.use('/', appRoutes);
 
