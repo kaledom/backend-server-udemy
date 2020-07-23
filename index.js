@@ -19,6 +19,9 @@ app.use( express.json() );
 // Base de datos
 dbConnection();
 
+// Directorio público
+app.use( express.static('public') );
+
 // Body Parser
 // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
