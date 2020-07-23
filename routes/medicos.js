@@ -19,13 +19,13 @@ const router = Router();
 // Rutas
 
 // ==========================================
-// Obtener todos los usuarios
+// Obtener todos los medicos
 // ==========================================
 router.get( '/',  getMedicos );
 
 
 // ==========================================
-// Crear un nuevo usuario
+// Crear un nuevo medico
 // ==========================================
 router.post( '/', 
              [
@@ -40,21 +40,25 @@ router.post( '/',
 );
 
 // ==========================================
-// Actualizar usuario
+// Actualizar medico
 // ==========================================
 router.put( '/:id', 
             [
-                  
+                validarJWT,
+                check('nombre','El nombre es requerido').not().isEmpty(), 
+                check('hospital','El id del hospital es requerido').not().isEmpty(),
+                check('hospital','El id del hospital debe ser válido').isMongoId(),
+                validarCampos
             ], 
             actualizarMedico 
 );
 
 // ==========================================
-// Borrar usuario por id
+// Borrar medico por id
 // ==========================================
 router.delete( '/:id',
                [
-                      
+                    validarJWT  
                ],
                borrarMedico
 );

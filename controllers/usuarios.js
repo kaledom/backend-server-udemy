@@ -77,7 +77,7 @@ const actualizarUsuario = async (req, res = response) => {
 
     const uid = req.params.id;
     //const {} = req.body;
-    console.log('Id del usuario: ', uid);
+    //console.log('Id del usuario: ', uid);
     try { 
 
         const usuarioDB = await Usuario.findById(uid);
