@@ -1,8 +1,5 @@
 
-var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
-
-var Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
 
 var rolesValidos = {
     values: ['ADMIN_ROLE','USER_ROLE'],
@@ -49,4 +46,4 @@ usuarioSchema.method('toJSON', function() {
     
     return object;
 })
-module.exports = mongoose.model('Usuario', usuarioSchema);
+module.exports = model('Usuario', usuarioSchema);

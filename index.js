@@ -21,14 +21,11 @@ dbConnection();
 
 // Body Parser
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
 
 // Importar rutas
 var appRoutes = require('./routes/app');
-var loginRoutes = require('./routes/auth');
-var usuarioRoutes = require('./routes/usuarios');
-var hospitalRoutes = require('./routes/hospital');
 
 // Conexión a la base de datos
 // user: lmanselmoa
@@ -37,7 +34,10 @@ var hospitalRoutes = require('./routes/hospital');
 // Rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/login', require('./routes/auth'));
-app.use('/hospital', hospitalRoutes);
+app.use('/api/hospitales', require('./routes/hospitales'));
+app.use('/api/medicos', require('./routes/medicos'));
+app.use('/api/todo', require('./routes/busquedas'));
+app.use('/api/upload', require('./routes/uploads'));
 app.use('/', appRoutes);
 
 

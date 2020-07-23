@@ -1,8 +1,7 @@
-
-var mongoose = require('mongoose');
-var uniqueValidator = require('mongoose-unique-validator');
-
-var Schema = mongoose.Schema;
+/*
+    Hospital Model
+*/
+const { Schema, model } = require('mongoose');
 
 var rolesValidos = {
     values: ['ADMIN_ROLE','USER_ROLE'],
@@ -10,14 +9,28 @@ var rolesValidos = {
 }
 
 
-var hostpitalSchema = new Schema({
+var hospitalSchema = new Schema({
 
-    nombre: { type: String, required: [true, 'El nombre es necesario'] },
-    img: { type: String, required: false },
-    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' }
+    nombre: { 
+        type: String, 
+        unique: true,
+        required: [true, 'El nombre es necesario'] 
+    },
+    img: {  
+        type: String,
+    },
+    usuario: {
+        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario'
+    }
 
 }, { collection: 'hospitales' });
 
-hostpitalSchema.plugin( uniqueValidator, { message: '{PATH} debe de ser único' } )
+//hospitalSchema.plugin( uniqueValidator, { message: '{PATH} debe de ser único' } )
+hospitalSchema.method('toJSON', function() {
+    const { __v, ...object } = this.toObject();
+    return object;
+})
 
-module.exports = mongoose.model('usuario', hostpitalSchema);
+module.exports = model('Hospital', hospitalSchema);
